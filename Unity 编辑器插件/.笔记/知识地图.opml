@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+<head>
+<title>知识地图</title>
+</head>
+<body>
+<outline text="编辑器扩展"><outline text="MenuItem"><outline text="使用方式"><outline text="[MenuItem(“path”)]
+statc void DoSth()"></outline>
+</outline>
+<outline text="Toggle（可被勾选）"><outline text="UnityEditor.Menu.SetChecked(“menupath”,true/false);"></outline>
+</outline>
+<outline text="快捷键"><outline text="使用方式"><outline text="[MenuItem(“path 快捷键码”)]"></outline>
+</outline>
+<outline text="常用快捷键码"><outline text="#"><outline text="Shift"></outline>
+</outline>
+<outline text="%"><outline text="Ctrl/Command"></outline>
+</outline>
+<outline text="&amp;"><outline text="Alt/Option"></outline>
+</outline>
+<outline text="_a-zA-Z"><outline text="a-zA-Z"></outline>
+</outline>
+</outline>
+<outline text="可以组合"></outline>
+<outline text="容易和 Unity 本身的快捷键冲突，需要自己试 或者 更改 Unity 本身的按键"></outline>
+</outline>
+<outline text="可用验证"><outline text="[MenuItem(“path”)]"></outline>
+<outline text="[MenuItem(“path”,validate = true)]"></outline>
+<outline text="static bool pathValidate()"></outline>
+</outline>
+<outline text="复用"><outline text="UnityEditor.EditorApplication.ExecuteMenuItem(“menuPath”);"></outline>
+</outline>
+</outline>
+<outline text="EditorWindow"><outline text="实现方式"><outline text="继承 UnityEditor.EditorWindow"></outline>
+</outline>
+<outline text="打开方式"><outline text="GetWindow&lt;WindowName&gt;().Show()"></outline>
+</outline>
+<outline text="绘制方式"><outline text="在 OnGUI 方法中使用 IMGUI 的 API 进行 UI 绘制"></outline>
+</outline>
+</outline>
+<outline text="IMGUI"><outline text="载体"><outline text="EditorWindow"><outline text="全部支持"></outline>
+</outline>
+<outline text="MonoBehaviour（运行时）"><outline text="支持 GUI、GUILayout"></outline>
+</outline>
+<outline text="Editor.OnInspectorGUI"></outline>
+<outline text="PropertyDrawer.OnGUI"></outline>
+<outline text="ObjectPreview.OnPreviewGUI"></outline>
+<outline text="EditorApplication.hierarchyWindowItemOnGUI"></outline>
+<outline text="EditorApplication.projectWindowItemOnGUI"></outline>
+<outline text="Editor.OnSceneGUI 的 Handles.BeginGUI 和 EndGUI 之间"></outline>
+<outline text="?"></outline>
+</outline>
+<outline text="API 模式"><outline text="GUILayout"><outline text="Label"></outline>
+<outline text="TextField"><outline text="PasswordField"></outline>
+<outline text="TextArea"></outline>
+</outline>
+<outline text="Button/RepeatButton"></outline>
+<outline text="Horizontal/Vertical"></outline>
+<outline text="Box"></outline>
+<outline text="ScrollView"></outline>
+<outline text="Horizontal/VerticalSlider"></outline>
+<outline text="Area"></outline>
+<outline text="Window"><outline text="?"></outline>
+</outline>
+<outline text="Toolbar"></outline>
+<outline text="Toggle"></outline>
+<outline text="Space/FlexibleSpace"></outline>
+<outline text="Width/Height/MinWidth/MinHeight/MaxHeight"></outline>
+<outline text="SelectionGrid"></outline>
+</outline>
+<outline text="GUI"><outline text="Label"></outline>
+<outline text="TextField"><outline text="TextArea"></outline>
+<outline text="PasswordField"></outline>
+</outline>
+<outline text="Toggle"></outline>
+<outline text="Toolbar"></outline>
+<outline text="Box"></outline>
+<outline text="ScrollView"><outline text="?"></outline>
+</outline>
+<outline text="Vertical/HorizontalSlider"></outline>
+<outline text="Group"></outline>
+<outline text="Window"><outline text="?"></outline>
+</outline>
+</outline>
+<outline text="EditorGUI"><outline text="Field"><outline text="LabelField"></outline>
+<outline text="ColorField"></outline>
+<outline text="BoundsField"></outline>
+<outline text="BoundsIntField"></outline>
+<outline text="CurveField"></outline>
+<outline text="DoubleField"></outline>
+<outline text="DelayedDoubleField"></outline>
+<outline text="EnumFlagsField"></outline>
+<outline text="GradientField"></outline>
+</outline>
+<outline text="Text"><outline text="TextField"></outline>
+<outline text="TextArea"></outline>
+<outline text="PasswordField"></outline>
+</outline>
+<outline text="Button"><outline text="DropdownButton"></outline>
+<outline text="LinkButton"></outline>
+</outline>
+<outline text="Helpbox"></outline>
+<outline text="DisabledGroup"></outline>
+<outline text="EnumPop"></outline>
+<outline text="ProgressBar"></outline>
+<outline text="https://docs.unity.cn/cn/current/ScriptReference/EditorGUI.html"></outline>
+</outline>
+<outline text="EditorGUILayout"><outline text="Toggle"></outline>
+<outline text="ToggleLeft"></outline>
+<outline text="FoldoutHeaderGroup"></outline>
+<outline text="FadeGroup"></outline>
+<outline text="ToggleGroup"></outline>
+<outline text="https://docs.unity.cn/cn/current/ScriptReference/EditorGUILayout.html"></outline>
+</outline>
+</outline>
+<outline text="GUIConent"><outline text="决定渲染内容"></outline>
+<outline text="文本、图片、提示"></outline>
+</outline>
+<outline text="GUIStyle"><outline text="决定渲染方式"></outline>
+<outline text="字体、颜色、背景、大小、状态等"></outline>
+</outline>
+<outline text="进阶 IMGUI 组件"><outline text="ReorderableList"><outline text="可排序列表"></outline>
+</outline>
+<outline text="TreeView"><outline text="继承 TreeView"></outline>
+<outline text="TreeView.OnGUI 渲染"></outline>
+<outline text="构造要加个  Reload"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Inspector"><outline text="ContextMenu"><outline text="上下文菜单"></outline>
+<outline text="使用方式"><outline text="ContextMenu(“name”)"></outline>
+<outline text="void function() {}"></outline>
+</outline>
+<outline text="ContextMenuItem"></outline>
+<outline text="MenuItem 版本"><outline text="[MenuItem(“CONTEXT/扩展脚本名/name”)]"></outline>
+</outline>
+</outline>
+<outline text="CustomEditor"><outline text="使用方式"><outline text="[CustomEditor(typeof(Script))]"></outline>
+<outline text="继承 Editor"></outline>
+<outline text="在 OnInspectorGUI 绘制"></outline>
+</outline>
+</outline>
+<outline text="Attribute"><outline text="常用内置"><outline text="SerializeField"></outline>
+<outline text="HideInInspector"></outline>
+<outline text="Tooltip"></outline>
+<outline text="Header"></outline>
+<outline text="Space"></outline>
+<outline text="Multiline"></outline>
+<outline text="TextArea"></outline>
+<outline text="Range"></outline>
+<outline text="HelpURLAttribute"></outline>
+<outline text="https://docs.unity.cn/cn/current/ScriptReference/HideInInspector.html"></outline>
+</outline>
+<outline text="自定义"><outline text="Attribute 继承 PropertyAttribute"></outline>
+<outline text="渲染器继承 PropertyDrawer"></outline>
+<outline text="使用 CustomPropertyDrawerAttribute 标记"></outline>
+<outline text="在 OnGUI 渲染"></outline>
+<outline text="使用 GetPropertyHeight 重新计算高度"></outline>
+</outline>
+</outline>
+<outline text="ObjectPreview"><outline text="Object 的预览编辑器"></outline>
+<outline text="使用方式"><outline text="继承 ObjectPreview"></outline>
+<outline text="HasPreviewGUI 返回  true"></outline>
+<outline text="OnPreviewGUI 渲染"></outline>
+<outline text="CustomPreviewAttribute 标记"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Hierarchy"><outline text="自定义方式"><outline text="EditorApplication.hierarchyWindowItemOnGUI"><outline text="渲染"></outline>
+</outline>
+<outline text="EditorApplication.hierarchyChanged"><outline text="监听变化"></outline>
+</outline>
+<outline text="EditorApplication.RepaintHierarchyWindow()"><outline text="重新绘制窗口"></outline>
+</outline>
+</outline>
+</outline>
+<outline text="Project"><outline text="自定义方式"><outline text="EditorApplication.projectWindowItemOnGUI"><outline text="自定义渲染"></outline>
+</outline>
+<outline text="EditorApplication.projectChanged"><outline text="监听变化"></outline>
+</outline>
+<outline text="EditorApplication.RepaintProjectWindow()"><outline text="重新绘制窗口"></outline>
+</outline>
+</outline>
+<outline text="ProjectWindowUtil"><outline text="CreateFolder"></outline>
+<outline text="CreataAsset"></outline>
+<outline text="..."></outline>
+</outline>
+<outline text="AssetDatabase"><outline text="资产数据库"></outline>
+<outline text="通过资产数据库做很多资产操作"></outline>
+<outline text="https://docs.unity.cn/cn/current/ScriptReference/AssetDatabase.html"></outline>
+</outline>
+<outline text="AssetModificationProcessor"><outline text="资产操作回调"></outline>
+<outline text="继承即可"></outline>
+<outline text="https://docs.unity.cn/cn/current/ScriptReference/AssetModificationProcessor.html"></outline>
+</outline>
+<outline text="AssetPostprocessor"><outline text="资产导入前后回调"></outline>
+<outline text="继承即可"></outline>
+<outline text="https://docs.unity.cn/cn/current/ScriptReference/AssetPostprocessor.html"></outline>
+</outline>
+</outline>
+<outline text="Scene"><outline text="Gizmos"><outline text="辅助物体绘制"></outline>
+<outline text="使用方式"><outline text="在 MonoBehaviour.OnDrawGizmos 或者用 [DrawGizmos]标记静态方法"></outline>
+</outline>
+<outline text="https://docs.unity.cn/cn/current/ScriptReference/Gizmos.html"></outline>
+</outline>
+<outline text="Handles"><outline text="场景视图中自定义 3D GUI 空间和 绘制操作"></outline>
+<outline text="使用方式"><outline text="在 Editor 的 OnSceneGUI 里调用 Handles"></outline>
+</outline>
+<outline text="https://docs.unity.cn/cn/current/ScriptReference/Handles.html"></outline>
+</outline>
+<outline text="EditorTool"><outline text="qwer 扩展"></outline>
+<outline text="使用方式"><outline text="[EditorTool] + 继承 EditorTool，在 OnToolGUI 用 Handles 绘制"></outline>
+</outline>
+<outline text="https://docs.unity.cn/cn/current/ScriptReference/EditorTools.EditorTool.html"></outline>
+</outline>
+</outline>
+<outline text="数据"><outline text="ScriptableObject"><outline text="数据当做资产"></outline>
+<outline text="使用方式"><outline text="继承 ScriptableObject"></outline>
+<outline text="[CreateAssetMenu] 标记 或者 ScriptableObject.CreateInstance 创建 asset"></outline>
+<outline text="提供了一些生命周期方法"></outline>
+</outline>
+</outline>
+<outline text="EditorPrefs"><outline text="编辑器扩展版本的 PlayerPrefs"></outline>
+</outline>
+</outline>
+<outline text="编辑器事件 Attribute"><outline text="static 构造"><outline text="第一次被获取时生效"></outline>
+</outline>
+<outline text="InitializeOnLoad"><outline text="加载脚本时初始化"></outline>
+</outline>
+<outline text="InitializeOnLoadMethod"><outline text="用于标记静态方法"></outline>
+</outline>
+<outline text="DidReloadScripts"><outline text="脚本编译完成后生效"></outline>
+</outline>
+<outline text="OnPostProcessScene"><outline text="加载场景"></outline>
+</outline>
+<outline text="OnPostProcessBuild"><outline text="Build 之后会收到一个回调"></outline>
+</outline>
+<outline text="OpenAsset"><outline text="打开某个资源时获得回调"></outline>
+</outline>
+</outline>
+<outline text="Event.Current"><outline text="检测鼠键输入"></outline>
+</outline>
+<outline text="Undo"><outline text="撤销操作注册"></outline>
+</outline>
+<outline text="GenericMenu"><outline text="实现类似右键菜单栏"></outline>
+</outline>
+<outline text="PopupWindow"><outline text="实现自定义的弹出窗口"></outline>
+</outline>
+<outline text="AdvancedDropdown"><outline text="可搜索的高级下拉菜单"></outline>
+</outline>
+<outline text="杂项"><outline text="UnityEditor.EditorUtility.RevealInFinder(“path”);"></outline>
+<outline text="可以在带有 MenuItem 静态类的 static 构造方法中做一些校正和初始化操作"></outline>
+<outline text="简易窗体框架"><outline text="GUILayout.Toolbar"><outline text="页面入口"></outline>
+</outline>
+<outline text="Enum"><outline text="页面Id"></outline>
+</outline>
+<outline text="方法"><outline text="渲染页面"></outline>
+</outline>
+<outline text="渲染页面也可以用一个类"></outline>
+</outline>
+<outline text="GUIUtility"><outline text="RotateAroundPivot"></outline>
+<outline text="ScaleAroundPivot"></outline>
+</outline>
+<outline text="GUILayoutUtility"><outline text="GetRect"><outline text="获取一个接下来要绘制的方块"></outline>
+</outline>
+<outline text="GetLastRect"><outline text="获取最近绘制控件的 Rect"></outline>
+</outline>
+</outline>
+<outline text="GUI"><outline text="color"></outline>
+<outline text="enabled"></outline>
+</outline>
+<outline text="EditorUtility"><outline text="InstanceIDToObject(instanceId);"></outline>
+<outline text="DisplayDialog"></outline>
+<outline text="DisplayProgressBar"></outline>
+<outline text="ClearProgressBar"></outline>
+</outline>
+<outline text="EditorApplication"><outline text="Beep"></outline>
+<outline text="EnterPlaymode"></outline>
+<outline text="ExitPlaymode"></outline>
+<outline text="Step"></outline>
+</outline>
+<outline text="AssetDatabase.GUIDToAssetPath"></outline>
+</outline>
+</outline>
+</body>
+</opml>
