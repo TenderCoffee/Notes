@@ -385,9 +385,113 @@ HUD 是半透明，所以不能开启 zTest  和 zWrite 开关
 
 
 
+# 摄像机 - Cinemachine
+
+核心：Brain（负责相机切换） + Virtual Camera（虚拟相机负责拍摄）
 
 
 
+Virtual Camera：计算  真实摄像机 的位置
+
+CinimachineBrain ：每帧将 Virtual Camera 计算得到的 位置数据 同步到真实相机上
+
+若干个 Cinemachine Component 组成的流水线：真正的数据计算
+
+
+
+
+
+## Brain
+
+
+
+### 调用流程
+
+
+
+两个时间节点：
+
+​	FixedUpdate
+
+​	LateUpdate
+
+三件事：
+
+​	维护虚拟相机的状态，永远在 LateUpdate
+
+​	通过虚拟相机计算 State，根据 UpdateMethod 的设置，在 FixedUpdate 之后或者 LateUpdate
+
+​	将虚拟相机的 State 同步到真实相机上，根据 BlendUpdateMethod 的设置，在 FixedUpdate 之后或者 LateUpdate
+
+
+
+用 UpdateMethod 和 BlendUpdateMethod 都为 LateUpdate 时举例：
+
+注意：在更新相机时，会通过 UpdateStatus 来保证每帧不会被多次更新，以免造成性能浪费
+
+![](.\images\Cinemachine_Brain调用流程.png)
+
+
+
+
+
+## Virtual Camera
+
+
+
+### State 的计算流程
+
+State 被一环一环的传递下去，每一步的计算都依赖于上一步计算出的 State 结果
+
+比如在 Aim 计算出旋转角度的时，就会依赖上一步 Body 计算出来的位置，以此位置为基础来计算旋转
+
+![Cinemachine_Virtual Camera State 计算流程](.\images\Cinemachine_Virtual Camera State 计算流程.png)
+
+
+
+
+
+### Lens - 调整 FOV
+
+
+
+### Body - 处理相机和跟踪目标之间相对位置
+
+Do Nothing：不移动虚拟相机
+
+Framing Transposer：在屏幕空间保持相机和跟随目标的相对位置，可设置缓动
+
+Hard Lock To Target：虚拟相机和跟随目标使用相同位置
+
+Orbital Transposer：相机和跟随目标的相对位置可变，且能接收用户输入
+
+Tracked Dolly：相机沿着预设置的轨道移动
+
+Transposer：相机和跟随目标的相对位置固定，可设置缓动
+
+
+
+### Aim - 处理焦点和跟踪目标在焦点中的相对位置
+
+Composer：将目标保持在相机镜头内，可设置多种约束
+
+Group Composer：将多个目标保持在相机镜头内
+
+Do Nothing：不旋转相机
+
+POV：根据用户输入旋转相机
+
+Same As Follow Target：将相机的旋转和跟随目标的旋转同步
+
+Hard Look At：将 Look At 目标固定在镜头中心的位置
+
+
+
+### Noise - 相机晃动
+
+### 后处理模块 - 每个镜头的后处理效果
+
+### Extension可扩展模块 - 碰撞处理等功能
 
 
 
