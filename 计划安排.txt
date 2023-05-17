@@ -1,0 +1,278 @@
+
+路上 - 【宣雨松】【uwa】
+上班 - 【HUD】【Terrain Mesh 地形烘焙工具】
+中午 - 【极客时间 - 深度】
+上班 - 【HUD】【Terrain Mesh 地形烘焙工具】
+路上 - 【宣雨松】【uwa】
+宿舍 - 
+	【Net】
+	【Demo - 实战】- yy
+	【公司框架】
+
+https://www.jianshu.com/p/fea4625c8fd3
+
+===================================
+
+switch (windowBase.LayoutType)
+{
+	case UIWindowLayoutType.Center:
+		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+		rectTransform.pivot = new Vector2(0.5f, 0.5f);
+		break;
+	case UIWindowLayoutType.LeftTop:
+		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(0, 1);
+		rectTransform.pivot = new Vector2(0, 1);
+		break;
+	case UIWindowLayoutType.RightTop:
+		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(1, 1);
+		rectTransform.pivot = new Vector2(1, 1);
+		break;
+	case UIWindowLayoutType.Bottom:
+		rectTransform.anchorMin = Vector2.zero;
+		rectTransform.anchorMax = new Vector2(1, 0);
+		rectTransform.pivot = new Vector2(0.5f, 0);
+		break;
+}
+
+===================================
+
+TA - 广度
+	光影、后处理、粒子系统（Vfx）、流体模拟、光线追踪、PBR、SRP - 广度
+
+UIToolkit制作行为树 - 深度
+https://www.youtube.com/watch?v=nKpM98I7PeM
+https://www.youtube.com/watch?v=jhB_GFgS6S0
+
+渲染
+1、DirectX Shader 编译器
+https://github.com/microsoft/DirectXShaderCompiler
+
+CS2Lua
+https://github.com/dreamanlan/Cs2Lua
+
+游戏安全
+https://github.com/dreamanlan/ghidra
+
+寻路：
+https://qiao.github.io/PathFinding.js/visual/
+https://github.com/juhgiyo/EpPathFinding3D.cs
+
+最快的寻路算法
+不考虑预处理，使用JPS [1]，可直接替代 8 方向、均值、正方栅格上的 A* 算法，全动态
+若考虑预处理，使用JPS+ with Goal Bounding [3]，不适合动态障碍物。
+[1] http://grastien.net/ban/articles/hg-aaai11.pdf
+[3] https://github.com/SteveRabin/JPSPlusWithGoalBounding
+
+数据结构、人工智能：
+https://github.com/dreamanlan/Supercluster.KDTree
+https://github.com/dreamanlan/VoronoiLib
+https://github.com/dreamanlan/DelaunayVoronoi
+https://github.com/dreamanlan/fluid-hierarchical-task-network
+https://github.com/dreamanlan/Marching-Cubes
+
+GC：
+https://github.com/ivmai/bdwgc
+
+==================================
+
+//ECS 2018
+角色预设 
+	挂载 DataWrapper - 继承自 SharedComponentDataWrapper / ComponentDataWrapper
+Spawner: MonoBehaviour
+{
+	//单例
+	Instance
+	
+	public unsafe Entity Spawn...
+	{
+		EntityManager = Unity.Entities.World.Active.GetExistingManager<EntityManager>()
+		
+		//【结果】
+		Entity = EntityManager.CreateEntity;
+		struct FormationData : 【IComponentData】
+		{
+			//基本类型数据
+		}
+		public class FormationDataComponent : ComponentDataWrapper<FormationData>
+		{
+			//把一个struct包装成MonoBehavior，然后就可以添加到prefab上了
+		}
+		FormationData.基本类型数据 = xxx;
+		EntityManager.AddComponentData(Entity, FormationData);
+		EntityManager.AddComponent(Entity, ComponentType.FixedArray(typeof(【Struct】), formationData.UnitCount));
+		
+		//创建的实例对应的预设实体
+		PrefabEntity = EntityManager.Instantiate((GameObject)Prefab);
+		NativeArray<Entity> arr = new NativeArray<Entity>(formationData.UnitCount, Allocator.Temp)
+		//实例化指定数量的实体数据
+		EntityManager.Instantiate(PrefabEntity, arr);
+		
+		for(... arr ...)
+		{
+			entity = arr[i]
+			【Struct】 组件数据 = entityManager.GetComponentData<【Struct】>(entity);
+			
+			struct NavMeshLocationComponent : IComponentData
+			{
+				//导航位置数据
+			}
+			
+			//寻路查找器
+			mapLocationQuery = new NavMeshQuery(NavMeshWorld.GetDefaultWorld(), Allocator.Persistent);
+			//MapLocation 设置 目标位置
+			NavMeshLocation = mapLocationQuery.MapLocation(transform.Position, Vector3.one * 10, 0)
+			【NavMeshLocationComponent】setComponent = new NavMeshLocationComponent(NavMeshLocation)
+			entityManager.SetComponentData(entity,  setComponent);
+		}
+		arr.Dispose();
+		entityManager.DestroyEntity(PrefabEntity);
+	}
+	
+	[ComputeJobOptimization]
+	struct MinionCollisionJob  : IJobParallelFor
+	{
+		public ComponentDataArray<xxxData> xxxDataArr;
+	
+		//这里可以拿到每一个实体数据
+		//然后在这个基础上增加判断逻辑
+		public void Execute(int i)
+		{
+			//拼装成 arr
+			var xxxData = xxxDataArr[i];
+			
+			
+			//判断逻辑 - 判断是否发生碰撞
+			//... ...
+			
+			
+			xxxDataArr[i] = xxxData;
+		}
+	}
+	
+	[UpdateAfter(typeof(FormationIntegritySystem))]
+	public class MinionCollisionSystem : JobComponentSystem
+	{
+		//
+		NativeList<XXX> m_Transforms;
+		...
+		
+		[Inject]
+		private Minions minions;
+	
+		protected override void OnCreateManager(int capacity)
+		{
+			m_Transforms = new NativeList<UnitTransformData>(Allocator.Persistent);
+			...
+		}
+		
+		protected override void OnDestroyManager()
+		{
+			m_Transforms.Dispose();
+			...
+		}
+	
+		protected override JobHandle OnUpdate(JobHandle inputDeps)
+		{
+			if (minions.Length == 0) return inputDeps;
+			
+			m_Transforms.ResizeUninitialized(minions.Length);
+			
+			inputDeps = (new MinionCollisionJob()).Schedule(length,...,inputDeps)
+			return inputDeps;
+		}
+	}
+	
+	//在 Transform 后再更新
+	[UpdateAfter(typeof(CrowdAgentsToTransformSystem))]
+	public class TextureAnimatorSystem : JobComponentSystem
+	{
+		private void Initialize()
+		{
+			if (initialized) return;
+
+			animationClipData = new NativeArray<AnimationClipDataBaked>(100, Allocator.Persistent);
+
+			perUnitTypeDataHolder = new Dictionary<UnitType, DataPerUnitType>();
+			
+			//ViewSettings 继承自 ScriptableObject - Instance Resources.Load
+			var minionPrefab = ViewSettings.Instance.XXXPrefab;
+			KeyframeTextureBaker.BakeClips
+
+
+			initialized = true;
+		}
+	
+		private JobHandle previousFrameFence;
+	
+		protected override JobHandle OnUpdate(JobHandle inputDeps)
+		{
+			Initialize();
+			
+			//完成 + 更新
+			previousFrameFence.Complete();
+			previousFrameFence = inputDeps;
+			
+			//驱动 Draw
+		}
+	}
+	
+	
+	
+	[UpdateAfter(typeof(UnitLifecycleManager))]
+	public class SpawnerSystem : JobComponentSystem
+	{
+		
+	}
+	
+}
+
+===================================
+
+0、制作模型预设 - 编辑器
+	InstallationRoot  放置的时候 按照y = 0 进行摆放就可以贴合到地板上
+	 |- 模型fbx(绑定 Collider 组件) 手动修改偏移
+	 |- 如果绑定了 Trigger 组件 = 则额外指定了交互范围 否则以 Collider 组件为交互范围
+	 
+1、主城 映射九宫格 = 角色的主城 = 可交互 - 编辑器
+	gridSize = new Vector2(1,1)
+	Root
+		|- role1
+			|- role1_startPoint_512_512
+		|- role2
+			|- role2_startPoint_700_512
+		|- role3
+			|- role3_startPoint_400_512
+		|- role4
+			|- role4_startPoint_900_512
+	从位置坐标向上发射射线
+	gridSize * 0.5
+	如果碰撞到碰撞体 = 有占位 Gizmos.Box 显示盒子
+	
+2、在格子外层 0.1 间隔处 增加一个外围栏
+	外围栏和碰撞体发生相交 MonoBehaviour.OnTriggerXXX（Collider collider） 
+	collider parent Name = InstallationRoot = 设施逗留在触发器中时触发 = 无法摆放
+	
+3、生成数据 发给服务器 索引位置x,y,旋转角度
+	
+===================================
+
+switch (windowBase.LayoutType)
+{
+	case UIWindowLayoutType.Center:
+		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+		rectTransform.pivot = new Vector2(0.5f, 0.5f);
+		break;
+	case UIWindowLayoutType.LeftTop:
+		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(0, 1);
+		rectTransform.pivot = new Vector2(0, 1);
+		break;
+	case UIWindowLayoutType.RightTop:
+		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(1, 1);
+		rectTransform.pivot = new Vector2(1, 1);
+		break;
+	case UIWindowLayoutType.Bottom:
+		rectTransform.anchorMin = Vector2.zero;
+		rectTransform.anchorMax = new Vector2(1, 0);
+		rectTransform.pivot = new Vector2(0.5f, 0);
+		break;
+}
