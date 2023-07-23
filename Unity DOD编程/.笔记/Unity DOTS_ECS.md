@@ -34,7 +34,7 @@ CPU 访问内存 的速度是最慢的
 
 容量大小：L1 < L2 < L3 < RAM 
 
-![](C:\Users\TenderCoffee\Desktop\Unity DOD编程\.笔记\images\缓存友好.png)
+![](.\images\缓存友好.png)
 
 
 
@@ -50,7 +50,7 @@ CPU 访问内存 的速度是最慢的
 
 **64 - 28 = 36：有36个字节的缓存是完全浪费的**
 
-![](C:\Users\TenderCoffee\Desktop\Unity DOD编程\.笔记\images\缓存行.png)
+![](.\images\缓存行.png)
 
 **这些浪费的内存会造成缓存命中率直线下降**
 
