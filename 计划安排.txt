@@ -6,33 +6,23 @@
 路上 - 【宣雨松】【uwa】
 宿舍 - 
 	【Net】
-	【Demo - 实战】- yy
+	【Demo - 实战】- yy、qq
 	【公司框架】
 
 https://www.jianshu.com/p/fea4625c8fd3
 
 ===================================
 
-switch (windowBase.LayoutType)
-{
-	case UIWindowLayoutType.Center:
-		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-		rectTransform.pivot = new Vector2(0.5f, 0.5f);
-		break;
-	case UIWindowLayoutType.LeftTop:
-		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(0, 1);
-		rectTransform.pivot = new Vector2(0, 1);
-		break;
-	case UIWindowLayoutType.RightTop:
-		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(1, 1);
-		rectTransform.pivot = new Vector2(1, 1);
-		break;
-	case UIWindowLayoutType.Bottom:
-		rectTransform.anchorMin = Vector2.zero;
-		rectTransform.anchorMax = new Vector2(1, 0);
-		rectTransform.pivot = new Vector2(0.5f, 0);
-		break;
-}
+优化：
+	极客时间 - 编译
+	极客时间 - 操作系统
+	极客时间 - 内存
+	uwa - https://community.uwa4d.com/objective
+	bilibili - 场景优化
+	
+hud uwa - 飘字
+Advanced_People_Pack_2_v2.8 - 捏脸、换皮、换装
+极客时间 - 数据结构与算法 - ChatGpt AI
 
 ===================================
 
@@ -254,25 +244,3 @@ Spawner: MonoBehaviour
 	
 3、生成数据 发给服务器 索引位置x,y,旋转角度
 	
-===================================
-
-switch (windowBase.LayoutType)
-{
-	case UIWindowLayoutType.Center:
-		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-		rectTransform.pivot = new Vector2(0.5f, 0.5f);
-		break;
-	case UIWindowLayoutType.LeftTop:
-		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(0, 1);
-		rectTransform.pivot = new Vector2(0, 1);
-		break;
-	case UIWindowLayoutType.RightTop:
-		rectTransform.anchorMax = rectTransform.anchorMin = new Vector2(1, 1);
-		rectTransform.pivot = new Vector2(1, 1);
-		break;
-	case UIWindowLayoutType.Bottom:
-		rectTransform.anchorMin = Vector2.zero;
-		rectTransform.anchorMax = new Vector2(1, 0);
-		rectTransform.pivot = new Vector2(0.5f, 0);
-		break;
-}
